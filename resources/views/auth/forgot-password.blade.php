@@ -1,35 +1,41 @@
-@extends('layouts.auth')
- 
-    @section('title', 'Forgot password')
-    @section('description', ' ')
-
-    @section('canonical', ' ')
-    @section('ogImage', ' ')
-
- 
-@section('content')
-    <h1 class="text-3xl font-black mb-4">{{__('auth.signin_h1')}}</h1>
-    <p class="mb-4 text-sm">{{__('auth.forgot_p')}}</p>
-    <x-auth-session-status class="mb-4" :status="session('status')" />
-
-    <form method="POST" action="{{ route('password.email') }}">
-        @csrf
-        
-        <!-- Email Address -->
+<x-guest-layout>
+    
+    <div class="flex flex-col justify-between p-8 text-left h-full">
         <div>
-            <x-input-label for="email" :value="__('auth.email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+            <h1 class="text-3xl font-bold text-center mb-8">{{__('auth.password_forgot')}}</h1>
+            
+            @include('includes.message')
+
+
+            <div class="mb-4 text-sm text-gray-600 dark:text-gray-400">
+                {{ __('auth.forgot_p') }}
+            </div>
+
+            @if (session('status'))
+                <div class="mb-4 font-medium text-sm text-green-600 dark:text-green-400">
+                    {{ session('status') }}
+                </div>
+            @endif
+
+            <x-validation-errors class="mb-4" />
+
+            <form method="POST" action="{{ route('password.email') }}">
+                @csrf
+
+                <div class="block">
+                    <x-label for="email" value="{{ __('auth.email') }}" />
+                    <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
+                </div>
+
+                
+                <x-button class="">
+                    {{ __('auth.eprl') }}
+                </x-button>
+                <p class="mt-2 text-center">{{__('auth.dont_have_account')}} <a href="{{route('register')}}" class="text-gray-400 underline" title="">{{__('auth.joinnow')}}</a></p>
+
+            </form>
+            
         </div>
-
-        <div class="mt-4">
-            <button type="submit" class="relative w-full text-center p-3 bg-red-700 text-white font-black rounded-xl">
-            {{ __('auth.eprl')}}
-            </button>    
-        </div>
-    </form>
-
-    <p class="text-center mt-4">{{ __('auth.dont_have_account')}} <a href="{{ route('register') }}" class="font-black" title="Sign in">{{__('auth.joinnow')}}</a></p>
-
-          
-    @endsection
+        @include('includes.guest-footer')
+    </div> 
+</x-guest-layout>

@@ -1,3 +1,42 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+[x-cloak] {
+    display: none;
+}
+.font-sans {
+    font-family: 'Quicksand', 'Alegreya Sans', sans-serif !important;
+}
+
+#time button {
+    top: 70% !important;
+    color:black;
+  }
+
+  
+#clientTable table thead tr th {
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    font-weight: 200;
+    color: rgb(156 163 175);
+  }
+  #clientTable table tbody tr {
+    border-bottom: 1px; border-style: solid;
+    border-color: rgb(255 255 255);
+  }
+  
+  
+  #clientTable table tbody tr td {
+    white-space: nowrap;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    
+  }
+  
+  #clientTable input {
+    border-radius: 0.375rem;
+    border-color:rgb(156 163 175);
+    color:grey;
+  }
+  #clientTable .font-medium {
+    font-weight: 300 !important;
+  }

@@ -47,4 +47,20 @@ return [
     'confirm_password_p' => 'To jest bezpieczny obszar aplikacji. Przed kontynuowaniem potwierdź swoje hasło.',
     'confirm' => 'Potwierdź',
 
+    'verify_h1' => 'Zweryfikuj swój adres e-mail',
+    'verify_p1' => 'Zanim przejdziesz dalej, możesz zweryfikować swój adres e-mail, klikając link, który właśnie wysłaliśmy do Ciebie e-mailem? Jeśli nie otrzymałeś wiadomości e-mail, chętnie wyślemy Ci kolejną.',
+    'verify_p2' => 'Nowy link weryfikacyjny został wysłany na adres e-mail podany w ustawieniach profilu.',
+    'verify_resent' => 'Wyślij ponownie e-mail weryfikacyjny',
+
+
+    'edit_profile' => 'Edytuj profil',
+
+    'confirm_pass_h1' => 'Potwierdź hasło',
+    'confirm_pass_p1' => 'To jest bezpieczny obszar aplikacji. Przed kontynuowaniem potwierdź swoje hasło.',
+    
+    'i_agree' => 'Zgadzam się z :terms_of_service i :privacy_policy',
+    'contact_us' => 'Kontakt z nami',
+    'terms' => 'Regulaminy',
+    'privacy' => 'Polityka prywatności',
+    'language' => 'Język',
 ];

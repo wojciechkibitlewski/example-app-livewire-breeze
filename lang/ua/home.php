@@ -12,8 +12,8 @@ return [
     | these language lines according to your application's requirements.
     |
     */
-    'homeTitle' => 'О, який чудовий вечір!',
-    'homeDesc' => 'Створіть чудовий додаток на Laravel, використовуючи автентифікацію Breeze, компоненти Livewire та фреймворк CSS Tailwind',
+    'homeTitle' => 'Вітаємо у PhotoAssistant! ',
+    'homeDesc' => 'Керуйте замовленнями просто та швидко',
     'bodyH1' => 'Назва статті',
     'nav_bottom_account' => 'Акаунт',
     'home' => 'Початок',
@@ -23,4 +23,7 @@ return [
     'nav_terms' => 'Терміни',
     'nav_policy' => 'Політика конфіденційності',
     'nav_contact' => "Зв'яжіться з нами",
+
+    'back' => 'Назад',
+
 ];

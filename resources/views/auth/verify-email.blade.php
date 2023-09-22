@@ -1,38 +1,49 @@
-@extends('layouts.auth')
- 
-    @section('title', 'Reset password')
-    @section('description', ' ')
+<x-guest-layout>
+    
+    <div class="flex flex-col justify-between p-8 text-left h-full">
+        <div>
+            <h1 class="text-3xl font-bold text-center mb-8">{{__('auth.verify_h1')}}</h1>
+           
+            @include('includes.message')
 
-    @section('canonical', ' ')
-    @section('ogImage', ' ')
+            <div class="mb-4 text-sm text-gray-600 dark:text-gray-400">
+                {{ __('auth.verify_p1') }}
+            </div>
 
- 
-@section('content')
-    <h1 class="text-3xl font-black mb-4">{{__('auth.confirm_h1')}}</h1>
-    <p class="mb-4 text-sm">{{__('auth.confirm_p')}}</p>
+            @if (session('status') == 'verification-link-sent')
+                <div class="mb-4 font-medium text-sm text-green-600 dark:text-green-400">
+                    {{ __('auth.verify_p2') }}
+                </div>
+            @endif
 
-    @if (session('status') == 'verification-link-sent')
-        <div class="mb-4 font-medium text-sm text-green-600">
-            {{ __('auth.verification_link_sent') }}
+            <div class="mt-4">
+                <form method="POST" action="{{ route('verification.send') }}">
+                    @csrf
+
+                    <div>
+                        <x-button type="submit">
+                            {{ __('auth.verify_resent') }}
+                        </x-button>
+                    </div>
+                </form>
+
+                <div class="text-center mt-6">
+                    <a
+                        href="{{ route('profile.show') }}"
+                        class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
+                    >
+                        {{ __('auth.edit_profile') }}</a>
+
+                    <form method="POST" action="{{ route('logout') }}" class="inline">
+                        @csrf
+
+                        <button type="submit" class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800 ml-2">
+                            {{ __('auth.logout') }}
+                        </button>
+                    </form>
+                </div>
+            </div>
         </div>
-    @endif
-
-    <form method="POST" action="{{ route('verification.send') }}">
-        @csrf
-        <div class="mt-4">
-            <button type="submit" class="relative w-full text-center p-3 bg-red-700 text-white font-black rounded-xl">
-            {{__('auth.confirm_reset')}}
-            </button>    
-        </div>
-    </form>
-
-    <form method="POST" action="{{ route('logout') }}">
-        @csrf
-        <div class="mt-4">
-            <button type="submit" class="relative w-full text-center p-3 bg-teal-500 text-white font-black rounded-xl">
-            {{__('auth.logout')}}
-            </button>    
-        </div>
-    </form>
-          
-    @endsection
+        @include('includes.guest-footer')
+    </div> 
+</x-guest-layout>

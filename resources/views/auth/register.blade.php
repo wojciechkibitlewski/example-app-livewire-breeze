@@ -1,66 +1,59 @@
-@extends('layouts.auth')
- 
-    @section('title', 'Join Now')
-    @section('description', ' ')
-
-    @section('canonical', ' ')
-    @section('ogImage', ' ')
-
- 
-@section('content')
-    <h1 class="text-3xl font-black mb-4">{{ __('auth.register_h1')}}</h1>
-    <x-auth-session-status class="mb-4" :status="session('status')" />
-
-    <form method="POST" action="{{ route('register') }}">
-        @csrf
-        <!-- Name -->
+<x-guest-layout>
+    
+    <div class="flex flex-col justify-between p-8 text-left md:min-h-screen">
         <div>
-            <x-text-input 
-            id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" 
-            required autofocus autocomplete="name" 
-            placeholder="{{ __('auth.name')}}"
-            />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+            <h1 class="text-3xl font-bold text-center mb-8">{{__('auth.register_h1')}}</h1>
+
+            @include('includes.message')
+
+            <form method="POST" action="{{ route('register') }}">
+                @csrf
+
+                <div>
+                    <x-label for="name" value="{{__('auth.name')}}" />
+                    <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+                </div>
+
+                <div class="mt-4">
+                    <x-label for="email" value="{{__('auth.email')}}" />
+                    <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
+                </div>
+
+                <div class="mt-4">
+                    <x-label for="password" value="{{__('auth.password')}}" />
+                    <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
+                </div>
+
+                <div class="mt-4">
+                    <x-label for="password_confirmation" value="{{__('auth.confirm_password')}}" />
+                    <x-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
+                </div>
+
+                @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
+                    <div class="mt-4">
+                        <x-label for="terms">
+                            <div class="flex items-center">
+                                <x-checkbox name="terms" id="terms" required />
+
+                                <div class="ml-2">
+                                    {!! __('auth.i_agree', [
+                                            'terms_of_service' => '<a target="_blank" href="'.route('terms.show').'" class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">'.__('Terms of Service').'</a>',
+                                            'privacy_policy' => '<a target="_blank" href="'.route('policy.show').'" class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">'.__('Privacy Policy').'</a>',
+                                    ]) !!}
+                                </div>
+                            </div>
+                        </x-label>
+                    </div>
+                @endif
+
+                <x-button class="">
+                    {{ __('auth.register') }}
+                </x-button>
+                <p class="mt-2">{{__('auth.have_account')}} <a href="{{route('login')}}" class="text-gray-400 underline" title="">{{__('auth.signin')}}</a></p>
+            </form>
+            
+            
         </div>
-
-        <!-- Email Address -->
-        <div class="mt-4">
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" 
-            required autocomplete="username" 
-            placeholder="{{ __('auth.email')}}"
-            />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
-
-        <!-- Password -->
-        <div class="mt-4">
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="new-password" 
-                            placeholder="{{ __('auth.password')}}" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
-
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                            type="password"
-                            name="password_confirmation" required autocomplete="new-password" 
-                            placeholder="{{ __('auth.confirm_password')}}" />
-
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-        </div>
-
-        <div class="mt-4">
-            <button type="submit" class="relative w-full text-center p-3 bg-red-700 text-white font-black rounded-xl">
-            {{ __('auth.register')}}
-            </button>    
-        </div>
-    </form>
-
-    <p class="text-center mt-4">{{ __('auth.have_account')}} <a href="{{ route('login') }}" class="font-black" title="{{ __('auth.signin')}}">{{ __('auth.signin')}}</a></p>
-
-          
-    @endsection
+        @include('includes.guest-footer')
+    </div> 
+</x-guest-layout>

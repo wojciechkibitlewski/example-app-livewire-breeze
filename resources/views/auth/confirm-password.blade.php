@@ -1,40 +1,30 @@
-@extends('layouts.auth')
- 
-    @section('title', 'Reset password')
-    @section('description', ' ')
-
-    @section('canonical', ' ')
-    @section('ogImage', ' ')
-
- 
-@section('content')
-    <h1 class="text-3xl font-black mb-4">{{__('auth.reset_h1')}}</h1>
-    <p class="mb-4 text-sm">{{__('auth.confirm_password_p')}}</p>
-    <x-auth-session-status class="mb-4" :status="session('status')" />
-
-    <form method="POST" action="{{ route('password.confirm') }}">
-        @csrf
-        
-        <!-- Password -->
+<x-guest-layout>
+    
+    <div class="flex flex-col justify-between p-8 text-left h-full">
         <div>
-            <x-input-label for="password" :value="__('auth.password')" />
+            <h1 class="text-3xl font-bold text-center mb-8">{{__('auth.confirm_pass_h1')}}</h1>
 
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
+            <div class="mb-4 text-sm text-gray-600 dark:text-gray-400">
+                {{ __('auth.confirm_pass_p1') }}
+            </div>
 
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+            @include('includes.message')
+
+            <form method="POST" action="{{ route('password.confirm') }}">
+                @csrf
+
+                <div>
+                    <x-label for="password" value="{{ __('auth.password') }}" />
+                    <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" autofocus />
+                </div>
+
+                
+                <x-button class="">
+                        {{ __('auth.confirm') }}
+                </x-button>
+            </form>
+            
         </div>
-
-        <div class="mt-4">
-            <button type="submit" class="relative w-full text-center p-3 bg-red-700 text-white font-black rounded-xl">
-            {{__('auth.confirm')}}
-            </button>    
-        </div>
-    </form>
-
-    <p class="text-center mt-4">{{ __('auth.dont_have_account')}} <a href="{{ route('register') }}" class="font-black" title="Sign in">{{__('auth.joinnow')}}</a></p>
-
-          
-    @endsection
+        @include('includes.guest-footer')
+    </div> 
+</x-guest-layout>

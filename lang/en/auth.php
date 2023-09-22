@@ -45,5 +45,23 @@ return [
 
     'confirm_password_p' => 'This is a secure area of the application. Please confirm your password before continuing.',
     'confirm' => 'Confirm',
+
+    'verify_h1' => 'Verify your email',
+    'verify_p1' => 'Before continuing, could you verify your email address by clicking on the link we just emailed to you? If you didn\'t receive the email, we will gladly send you another.',
+    'verify_p2' => 'A new verification link has been sent to the email address you provided in your profile settings.',
+    'verify_resent' => 'Resend Verification Email',
+
+
+    'edit_profile' => 'Edit Profile',
+
+    'confirm_pass_h1' => 'Confirm password',
+    'confirm_pass_p1' => 'This is a secure area of the application. Please confirm your password before continuing.',
+    
+    'i_agree' => 'I agree to the :terms_of_service and :privacy_policy',
+    'contact_us' => 'Contact us',
+    'terms' => 'Terms',
+    'privacy' => 'Privacy',
+    'language' => 'Language',
+
 ];
 

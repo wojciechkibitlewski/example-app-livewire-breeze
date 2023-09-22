@@ -12,8 +12,8 @@ return [
     | these language lines according to your application's requirements.
     |
     */
-    'homeTitle' => 'Oh, what a lovely evening!',
-    'homeDesc' => 'Design a great app in Laravel using Breeze authentication, Livewire components and the Tailwind CSS framework',
+    'homeTitle' => 'Welcome to PhotoAssistant!',
+    'homeDesc' => 'Manage photo sessions quickly and simply.',
     'bodyH1' => 'Body header',
     'nav_bottom_account' => 'Account',
     'home' => 'Home',
@@ -23,5 +23,7 @@ return [
     'nav_terms' => 'Terms',
     'nav_policy' => 'Privacy policy',
     'nav_contact' => 'Contact us',
+
+    'back' => 'Back',
 
 ];
